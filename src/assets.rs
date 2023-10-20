@@ -12,4 +12,6 @@ impl Plugin for GameAssetsPlugin {
 pub struct ImageAssets {
     #[asset(path = "ball.png")]
     pub ball: Handle<Image>,
+    #[asset(path = "placeholder.png")]
+    pub placeholder: Handle<Image>,
 }
