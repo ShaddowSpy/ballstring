@@ -11,6 +11,7 @@ use camera::spawn_camera;
 
 mod assets;
 mod camera;
+mod input;
 
 fn main() {
     App::new()
