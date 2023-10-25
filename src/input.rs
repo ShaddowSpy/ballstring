@@ -14,7 +14,10 @@ pub enum PlayerActions {
     Right,
 }
 impl PlayerActions {
-    fn input_map() -> InputMap<Self> {
-        InputMap::new([(KeyCode::A, Self::Left), (KeyCode::D, Self::Right)])
+    pub fn input_manager() -> InputManagerBundle<Self> {
+        InputManagerBundle::<Self> {
+            action_state: ActionState::default(),
+            input_map: InputMap::new([(KeyCode::A, Self::Left), (KeyCode::D, Self::Right)]),
+        }
     }
 }

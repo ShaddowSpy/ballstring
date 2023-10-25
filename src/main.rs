@@ -1,17 +1,20 @@
 pub mod prelude {
-    pub use crate::assets::ImageAssets;
     pub use bevy::prelude::*;
+    pub use bevy_rapier2d::prelude::*;
+
+    pub use crate::assets::ImageAssets;
+    pub use crate::input::PlayerActions;
 }
 use crate::prelude::*;
 
-use bevy_rapier2d::prelude::*;
-
 use assets::GameAssetsPlugin;
 use camera::spawn_camera;
+use player::PlayerPlugin;
 
 mod assets;
 mod camera;
 mod input;
+mod player;
 
 fn main() {
     App::new()
@@ -19,23 +22,10 @@ fn main() {
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
         .add_plugins(RapierDebugRenderPlugin::default())
         .add_plugins(GameAssetsPlugin)
+        .add_plugins(PlayerPlugin)
         .add_systems(Startup, spawn_camera)
-        .add_systems(Startup, spawn_ball)
         .add_systems(Startup, spawn_floor)
         .run();
-}
-
-fn spawn_ball(mut cmd: Commands, assets: Res<ImageAssets>) {
-    cmd.spawn((
-        SpriteBundle {
-            texture: assets.ball.clone(),
-            transform: Transform::from_scale(Vec3::new(4.0, 4.0, 1.0)),
-            ..default()
-        },
-        Name::new("Player"),
-        RigidBody::Dynamic,
-        Collider::ball(8.0),
-    ));
 }
 
 fn spawn_floor(mut cmd: Commands, assets: Res<ImageAssets>) {
