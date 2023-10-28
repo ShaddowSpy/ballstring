@@ -7,6 +7,9 @@ impl Plugin for TerrainPlugin {
     }
 }
 
+#[derive(Component, Debug)]
+pub struct Floor;
+
 fn spawn_floor(mut cmd: Commands, assets: Res<ImageAssets>) {
     cmd.spawn((
         SpriteBundle {
@@ -20,5 +23,6 @@ fn spawn_floor(mut cmd: Commands, assets: Res<ImageAssets>) {
         },
         RigidBody::Fixed,
         Collider::cuboid(8.0, 8.0),
+        Floor,
     ));
 }
