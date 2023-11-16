@@ -1,6 +1,8 @@
 pub mod prelude {
     pub use bevy::prelude::*;
-    pub use bevy_rapier2d::prelude::*;
+    pub use bevy_rapier2d::prelude::{
+        Collider, NoUserData, RapierDebugRenderPlugin, RapierPhysicsPlugin, RigidBody,
+    };
 
     pub use crate::assets::ImageAssets;
     pub use crate::input::PlayerActions;
